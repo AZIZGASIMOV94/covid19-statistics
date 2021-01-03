@@ -7,7 +7,6 @@ import React, { Component } from 'react';
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 class App extends Component {
-    
     constructor(props) {
       super(props);
       this.state = {
@@ -16,7 +15,16 @@ class App extends Component {
         targetCountry: "",
         deathNumber: 0,
         targetProvince: "",
+        listOfCountries: [
+          "Russia",
+          "Azerbaijan",
+          "Turkey"
+        ],
+        listOfStats: [],
+        listForRender: []
       };
+      // this.onValueChanged = this.onValueChanged.bind(this);
+      // this.onTabsSelectionChanged = this.onTabsSelectionChanged.bind(this);
     }
     componentDidMount() {
       this.handleFetch("Azerbaijan");
@@ -26,7 +34,27 @@ class App extends Component {
       this.handleFetch(target);
     };
   
-    handleFetch = (target) => {
+    handleFetch = async (target) => {
+      // for(let i = 0; i<this.state.listOfCountries.length; i++){
+      //   fetch(
+      //     "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/stats?country=" +
+      //     this.state.listOfCountries[i],
+      //     {
+      //       method: "GET",
+      //       headers: {
+      //         "x-rapidapi-key": API_KEY,
+      //         "x-rapidapi-host": "covid-19-coronavirus-statistics.p.rapidapi.com",
+      //       },
+      //     }
+      //   ).then((response) => response.json()).then((data) => {
+      //     // console.log(data.data.covid19Stats[0].country);
+      //     // console.log(this.state.listOfCountries[i]);
+      //     this.state.listOfStats[i] =  data.data.covid19Stats[0].country;
+      //     console.log("current list of stats: ", this.state.listOfStats);
+      //   })
+      // }
+      // console.log("list of statistics: ",this.state.listOfStats)
+      // console.log("countries", this.state.listOfCountries)
       fetch(
         "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/stats?country=" +
           target,
@@ -53,13 +81,42 @@ class App extends Component {
         });
     };
 
-    
     render(){
+      const myList = this.state.listOfStats; 
+      console.log("mylist",myList);
+      
       return (
         <div className="App">
-        <Button onClick={(target) => this.handleChange("Azerbaijan", target)}>Azerbaijan</Button>
-        <Button onClick={(target) => this.handleChange("Russia", target)}>Russia</Button>
-        <Button onClick={(target) => this.handleChange("Turkey", target)}>Turkey</Button>
+        {
+          myList.map((item, i) => <li key={i}>{item}</li>)
+        }
+        <Button 
+          onClick={(target) => this.handleChange("Azerbaijan", target)}
+          width={120}
+          text="Outlined"
+          type="normal"
+          stylingMode="outlined"
+        >
+            Azerbaijan
+        </Button>
+        <Button 
+          onClick={(target) => this.handleChange("Russia", target)}
+          width={120}
+          text="Outlined"
+          type="normal"
+          stylingMode="outlined"
+        >
+          Russia
+        </Button>
+        <Button 
+          onClick={(target) => this.handleChange("Turkey", target)}
+          width={120}
+          text="Outlined"
+          type="normal"
+          stylingMode="outlined"
+        >
+          Turkey
+        </Button>
         <br></br>
         Last Updated:  {this.state.res}
           <br></br>
@@ -70,6 +127,7 @@ class App extends Component {
         Number of Death:  {this.state.deathNumber}
           <br></br>
         Province:  {this.state.targetProvince}
+        
         </div>
       );
     }
