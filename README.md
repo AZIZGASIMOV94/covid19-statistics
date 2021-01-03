@@ -1,3 +1,9 @@
+# This project is designed for browsing the statistical data about Covid 19 Cases all aournd the world
+
+# To be able to run this project, you need to obtain the unique key from https://rapidapi.com/KishCom/api/covid-19-coronavirus-statistics/details
+# list of countries displayed in form of buttons which later will be modified for dropdown style 
+# Anyone can modify and contribute this project 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
