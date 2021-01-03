@@ -1,3 +1,6 @@
+import 'devextreme/dist/css/dx.common.css';
+import 'devextreme/dist/css/dx.light.css';
+import Button from 'devextreme-react/button';
 import './App.css';
 import React, { Component } from 'react';
 
@@ -54,9 +57,9 @@ class App extends Component {
     render(){
       return (
         <div className="App">
-        <button onClick={(target) => this.handleChange("Azerbaijan", target)}>Azerbaijan</button>
-        <button onClick={(target) => this.handleChange("Russia", target)}>Russia</button>
-        <button onClick={(target) => this.handleChange("Turkey", target)}>Turkey</button>
+        <Button onClick={(target) => this.handleChange("Azerbaijan", target)}>Azerbaijan</Button>
+        <Button onClick={(target) => this.handleChange("Russia", target)}>Russia</Button>
+        <Button onClick={(target) => this.handleChange("Turkey", target)}>Turkey</Button>
         <br></br>
         Last Updated:  {this.state.res}
           <br></br>
